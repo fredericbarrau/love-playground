@@ -1,0 +1,18 @@
+{
+    "configurations": [
+    {
+        "name": "Debug love",
+        "type": "lua-local",
+        "request": "launch",
+        "stopOnEntry": false,
+        "program": {
+            "command": "D:\\Gamedev\\love-11.3-win64\\lovec.exe"
+        },
+        "args": 
+        [
+            "${workspaceFolder}",
+        ],
+        "consoleCoding": "utf8"
+    }
+    ]
+}
