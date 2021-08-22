@@ -13,6 +13,8 @@ Player = {
 
     key_up = "up",
     key_down = "down",
+
+    player_num = 1,
 }
 
 function Player:new(o)
@@ -41,12 +43,13 @@ end
 
 -- Helpers
 
-function Player:load(window_width, window_height,num_player)
+function Player:load(window_width, window_height,player_num)
     self.max_y = window_height -- boudaries for mouvement
-    if num_player == 1 then
-        self:setPosition(20, window_height / 2 - self.y /2)
+    self.player_num = player_num
+    if player_num == 1 then
+        self:setPosition(20, window_height / 2 - self.height /2)
     else
-        self:setPosition(window_width - 20, window_height / 2 - self.y /2)
+        self:setPosition(window_width - 20, window_height / 2 - self.height /2)
         self:setColor(255,255,255)
     end
 end
@@ -65,6 +68,21 @@ end
 function Player:setKeys(up,down)
     self.key_up = up
     self.key_down = down
+end
+
+-- Return the X pos of the ball when it is attached to the player's racket
+function Player:getBallStartupX(ball_radius)
+    local ball_x = 0
+    if self.player_num == 1 then
+      ball_x = self.x + self.width + ball_radius
+    else
+      ball_x = self.x - ball_radius
+    end
+    return ball_x
+end
+
+function Player:getBallStartupY()
+    return self.y + self.height / 2
 end
 
 return Player
